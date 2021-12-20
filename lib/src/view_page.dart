@@ -125,7 +125,8 @@ class _PageViewJState extends State<PageViewJ> {
   }
 
   double pageSafe(PageController pageController) {
-    if (!pageController.position.hasContentDimensions || pageController.page == null) {
+    if (!pageController.position.hasContentDimensions ||
+        pageController.page == null) {
       return 0;
     } else {
       return pageController.page!;
@@ -138,6 +139,15 @@ abstract class PageTransform {
 
   PageTransform();
 
+  ///
+  /// ```dart
+  ///  if (page == index) {
+  ///     /// 静止状态
+  ///   } else if (page > index) {
+  ///     /// 滑动状态:当前要离开的页面  (aniValue  1-0)
+  ///   } else {
+  ///     /// 滑动状态:下一个要进来的页面  (aniValue  0-1)
+  ///   }
   Widget transform(int index, double page, double aniValue, Widget child);
 }
 
@@ -274,7 +284,8 @@ class StackTransform extends PageTransform {
       return Transform(
         transform: Matrix4.identity()
           ..setEntry(3, 2, 0.001)
-          ..scale(initialScale + 0.2 * aniValue, initialScale + 0.2 * aniValue, 1)
+          ..scale(
+              initialScale + 0.2 * aniValue, initialScale + 0.2 * aniValue, 1)
           ..rotateY(angle.clamp(0, pi / 2)),
         alignment: alignment,
         child: Opacity(opacity: .5 + .5 * aniValue.abs(), child: child),
@@ -300,7 +311,8 @@ class StackTransform extends PageTransform {
       return Transform(
         transform: Matrix4.identity()
           ..setEntry(3, 2, -0.001)
-          ..scale(initialScale + 0.2 * aniValue, initialScale + 0.2 * aniValue, 1)
+          ..scale(
+              initialScale + 0.2 * aniValue, initialScale + 0.2 * aniValue, 1)
           ..rotateX(angle.clamp(0, pi / 2)),
         alignment: alignment,
         child: Opacity(opacity: .5 + .5 * aniValue.abs(), child: child),
@@ -397,7 +409,6 @@ class RotateTransform extends PageTransform {
 }
 
 class ClipTransform extends PageTransform {
-
   ClipTransform();
 
   @override
@@ -451,6 +462,89 @@ class ClipTransform extends PageTransform {
             widthFactor: aniValue,
             child: Transform.translate(
               offset: Offset(0, -constraints.maxHeight * (1 - aniValue)),
+              child: child,
+            ),
+          ),
+        );
+      });
+    }
+  }
+}
+
+class FlipTransform extends PageTransform {
+  FlipTransform();
+
+  @override
+  Widget transform(int index, double page, double aniValue, Widget child) {
+    if (modifier?.scrollDirection == Axis.vertical) {
+      return vertical(aniValue, index, page, child);
+    } else {
+      return horizontal(aniValue, index, page, child);
+    }
+  }
+
+  Widget horizontal(double aniValue, int index, double page, Widget child) {
+    if (page == index) {
+      return child;
+    } else if (page > index) {
+      return LayoutBuilder(builder: (context, constraints) {
+        return Transform.translate(
+          offset: Offset(constraints.maxWidth * (1 - aniValue), 0),
+          child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.001)
+                ..rotateY((pi * (1 - aniValue)).clamp(0, pi / 2)),
+              child: child),
+        );
+      });
+    } else {
+      return LayoutBuilder(builder: (context, constraints) {
+        return Transform.translate(
+          offset: Offset(-constraints.maxWidth * (1 - aniValue), 0),
+          child: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY((pi * aniValue).clamp(pi / 2, pi)),
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()..rotateY(pi),
+              child: child,
+            ),
+          ),
+        );
+      });
+    }
+  }
+
+  Widget vertical(double aniValue, int index, double page, Widget child) {
+    if (page == index) {
+      return child;
+    } else if (page > index) {
+      ///当前要离开的页面  (aniValue  1-0)
+      return LayoutBuilder(builder: (context, constraints) {
+        return Transform.translate(
+          offset: Offset(0, constraints.maxHeight * (1 - aniValue)),
+          child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..rotateX((pi * (1 - aniValue)).clamp(0, pi / 2)),
+              child: child),
+        );
+      });
+    } else {
+      ///下一个要进来的页面  (aniValue  0-1)
+      return LayoutBuilder(builder: (context, constraints) {
+        return Transform.translate(
+          offset: Offset(0, -constraints.maxHeight * (1 - aniValue)),
+          child: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..rotateX((pi * aniValue).clamp(pi / 2, pi)),
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()..rotateX(pi),
               child: child,
             ),
           ),
