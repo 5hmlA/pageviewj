@@ -39,8 +39,6 @@ jobs:
       # 建立 Flutter 环境
       - name: Flutter action
         uses: subosito/flutter-action@v1.5.3
-        with:
-          flutter-version: "2.0.5"
       # 下载项目依赖
       - run: flutter pub get
       # 执行测试
