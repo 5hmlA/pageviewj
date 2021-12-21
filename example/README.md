@@ -1,6 +1,6 @@
-# pageviewj_example
+# example
 
-Demonstrates how to use the pageviewj plugin.
+A new Flutter project.
 
 ## Getting Started
 
