@@ -3,7 +3,6 @@
 *.aar
 *.ap_
 *.aab
-.*
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -39,6 +38,8 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/
+.idea/*
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml

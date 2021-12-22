@@ -1,4 +1,4 @@
-# [![publish](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml/badge.svg)](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml)![https://pub.dev/packages/pageviewj](https://img.shields.io/badge/pageviewj-0.0.1-blue)
+# [![publish](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml/badge.svg)](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml)  [![](https://img.shields.io/badge/pageviewj-0.0.1-blue)](https://pub.dev/packages/pageviewj)
 
 - pub
 
