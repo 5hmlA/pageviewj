@@ -1,6 +1,4 @@
-import 'package:example/hero_demo.dart';
 import 'package:example/sample_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pageviewj/pageviewj.dart';
 
@@ -41,90 +39,94 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 300,
-            child: PageViewJ(
-              transform: SlowTransform(),
-              itemBuilder: pageViewItem,
-            ),
+    return Center(
+      child: SizedBox(
+        width: 360,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  transform: SlowTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const SizedBox(
+                height: 400,
+                child: PageViewJ.aniBuilder(
+                  aniItemBuilder: heroAniItem,
+                ),
+              ),
+              const SizedBox(
+                height: 300,
+                child: PageViewJ.aniBuilder(
+                  aniItemBuilder: pageviewAniItem,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  modifier: const Modifier(
+                      viewportFraction: .73,
+                      padEnds: false,
+                      scrollDirection: Axis.vertical),
+                  transform: StackTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  transform: CubeTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 300,
+                child: LayoutBuilder(builder: (context, constraints) {
+                  return PageViewJ(
+                    modifier: const Modifier(viewportFraction: .73),
+                    transform: RotateTransform(),
+                    itemBuilder: pageViewItem,
+                  );
+                }),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  modifier: const Modifier(scrollDirection: Axis.vertical),
+                  transform: ClipTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  modifier: const Modifier(
+                      scrollDirection: Axis.horizontal, clipBehavior: Clip.none),
+                  transform: FlipTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          const SizedBox(
-            height: 400,
-            child: PageViewJ.aniBuilder(
-              aniItemBuilder: heroAniItem,
-            ),
-          ),
-          const SizedBox(
-            height: 300,
-            child: PageViewJ.aniBuilder(
-              aniItemBuilder: pageviewAniItem,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 300,
-            child: PageViewJ(
-              modifier: const Modifier(
-                  viewportFraction: .73,
-                  padEnds: false,
-                  scrollDirection: Axis.vertical),
-              transform: StackTransform(),
-              itemBuilder: pageViewItem,
-            ),
-          ),
-          SizedBox(
-            height: 300,
-            child: PageViewJ(
-              transform: CubeTransform(),
-              itemBuilder: pageViewItem,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 300,
-            child: LayoutBuilder(builder: (context, constraints) {
-              print("build > [PageViewJ] === ${constraints} ");
-              return PageViewJ(
-                modifier: const Modifier(viewportFraction: .73),
-                transform: RotateTransform(),
-                itemBuilder: pageViewItem,
-              );
-            }),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 300,
-            child: PageViewJ(
-              modifier: const Modifier(scrollDirection: Axis.vertical),
-              transform: ClipTransform(),
-              itemBuilder: pageViewItem,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 300,
-            child: PageViewJ(
-              modifier: const Modifier(
-                  scrollDirection: Axis.horizontal, clipBehavior: Clip.none),
-              transform: FlipTransform(),
-              itemBuilder: pageViewItem,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

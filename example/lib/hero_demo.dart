@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Hero {
@@ -26,12 +25,13 @@ class HeroBorder extends StadiumBorder {
   }
 }
 
+@immutable
 class HeroCard extends StatelessWidget {
   final int index;
   final double page;
   final double aniValue;
 
-  HeroCard(this.index, this.page, this.aniValue, {Key? key}) : super(key: key);
+  const HeroCard(this.index, this.page, this.aniValue, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,6 @@ class HeroCard extends StatelessWidget {
         color = ColorTween(end: Colors.transparent, begin: hero.color).transform(1 - aniValue);
         Widget child = buildChild(color, scale, hero, context, textStyle);
         xOffset = constraints.maxWidth * (1 - aniValue);
-        Offset offset = Offset(xOffset, 0);
         return Transform.rotate(
           angle: angle,
           alignment: Alignment.bottomLeft,
