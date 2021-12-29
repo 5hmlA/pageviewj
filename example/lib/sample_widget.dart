@@ -3,12 +3,19 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'hero_demo.dart';
+
 List<String> images = [
   "images/gmzr1.jpg",
   "images/gmzr2.jpg",
   "images/gmzr3.jpg",
   "images/gmzr4.jpg",
 ];
+
+Widget heroAniItem(
+    BuildContext context, int index, double page, double aniValue) {
+  return HeroCard(index, page, aniValue);
+}
 
 Widget pageviewAniItem(
     BuildContext context, int index, double page, double aniValue) {

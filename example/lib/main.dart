@@ -1,3 +1,4 @@
+import 'package:example/hero_demo.dart';
 import 'package:example/sample_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:pageviewj/pageviewj.dart';
@@ -43,6 +44,15 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
+            height: 30,
+          ),
+          const SizedBox(
+            height: 400,
+            child: PageViewJ.aniBuilder(
+              aniItemBuilder: heroAniItem,
+            ),
+          ),
+          const SizedBox(
             height: 300,
             child: PageViewJ.aniBuilder(
               aniItemBuilder: pageviewAniItem,
@@ -54,9 +64,18 @@ class MyHomePage extends StatelessWidget {
           SizedBox(
             height: 300,
             child: PageViewJ(
-              modifier: const Modifier(viewportFraction: .73,padEnds: false,scrollDirection: Axis
-                  .vertical),
+              modifier: const Modifier(
+                  viewportFraction: .73,
+                  padEnds: false,
+                  scrollDirection: Axis.vertical),
               transform: StackTransform(),
+              itemBuilder: pageViewItem,
+            ),
+          ),
+          SizedBox(
+            height: 300,
+            child: PageViewJ(
+              transform: CubeTransform(),
               itemBuilder: pageViewItem,
             ),
           ),
@@ -65,16 +84,14 @@ class MyHomePage extends StatelessWidget {
           ),
           SizedBox(
             height: 300,
-            child: LayoutBuilder(
-                builder: (context, constraints) {
-                  print("build > [PageViewJ] === ${constraints} ");
-                  return PageViewJ(
-                    modifier: const Modifier(viewportFraction: .73),
-                    transform: RotateTransform(),
-                    itemBuilder: pageViewItem,
-                  );
-                }
-            ),
+            child: LayoutBuilder(builder: (context, constraints) {
+              print("build > [PageViewJ] === ${constraints} ");
+              return PageViewJ(
+                modifier: const Modifier(viewportFraction: .73),
+                transform: RotateTransform(),
+                itemBuilder: pageViewItem,
+              );
+            }),
           ),
           const SizedBox(
             height: 30,
@@ -93,7 +110,8 @@ class MyHomePage extends StatelessWidget {
           SizedBox(
             height: 300,
             child: PageViewJ(
-              modifier: const Modifier(scrollDirection: Axis.horizontal,clipBehavior: Clip.none),
+              modifier: const Modifier(
+                  scrollDirection: Axis.horizontal, clipBehavior: Clip.none),
               transform: FlipTransform(),
               itemBuilder: pageViewItem,
             ),

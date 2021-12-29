@@ -19,6 +19,15 @@ PageViewJ.aniBuilder(
 )
 ```
 
+![flipover](https://raw.githubusercontent.com/ZuYun/pageviewj/main/preview/hero.gif)
+
+```
+PageViewJ.aniBuilder(
+     /// HeroCard.dart
+     aniItemBuilder: heroAniItem,
+)
+```
+
 
 
 
@@ -73,6 +82,18 @@ PageViewJ(
 PageViewJ(
    modifier: const Modifier(scrollDirection: Axis.horizontal,clipBehavior: Clip.none),
    transform: FlipTransform(),
+   itemBuilder: pageViewItem,
+)
+```
+
+
+### CubeTransform
+
+![flipover](https://raw.githubusercontent.com/ZuYun/pageviewj/main/preview/CubeTransform.gif)
+
+```dart
+PageViewJ(
+   transform: CubeTransform(),
    itemBuilder: pageViewItem,
 )
 ```
