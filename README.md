@@ -31,7 +31,6 @@ PageViewJ.aniBuilder(
 
 
 
-
 #### RotateTransform
 
 ![flipover](https://raw.githubusercontent.com/ZuYun/pageviewj/main/preview/RotateTransform.gif)
@@ -94,6 +93,18 @@ PageViewJ(
 ```dart
 PageViewJ(
    transform: CubeTransform(),
+   itemBuilder: pageViewItem,
+)
+```
+
+
+### SlowTransform
+
+![flipover](https://raw.githubusercontent.com/ZuYun/pageviewj/main/preview/SlowTransform.gif)
+
+```dart
+PageViewJ(
+   transform: SlowTransform(),
    itemBuilder: pageViewItem,
 )
 ```

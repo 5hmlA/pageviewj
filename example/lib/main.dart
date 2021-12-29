@@ -1,5 +1,6 @@
 import 'package:example/hero_demo.dart';
 import 'package:example/sample_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pageviewj/pageviewj.dart';
 
@@ -43,6 +44,13 @@ class MyHomePage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          SizedBox(
+            height: 300,
+            child: PageViewJ(
+              transform: SlowTransform(),
+              itemBuilder: pageViewItem,
+            ),
+          ),
           const SizedBox(
             height: 30,
           ),
