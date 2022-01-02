@@ -48,6 +48,37 @@ class MyHomePage extends StatelessWidget {
               SizedBox(
                 height: 300,
                 child: PageViewJ(
+                  modifier: const Modifier(scrollDirection: Axis.horizontal),
+                  transform: ShuttersCubeTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  modifier: const Modifier(scrollDirection: Axis.horizontal),
+                  transform: ShuttersFlipTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  modifier: const Modifier(scrollDirection: Axis.vertical),
+                  transform: CubeTransform(),
+                  itemBuilder: pageViewItem,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 300,
+                child: PageViewJ(
+                  // modifier: const Modifier(viewportFraction: .73),
                   transform: SlowTransform(),
                   itemBuilder: pageViewItem,
                 ),
@@ -73,10 +104,7 @@ class MyHomePage extends StatelessWidget {
               SizedBox(
                 height: 300,
                 child: PageViewJ(
-                  modifier: const Modifier(
-                      viewportFraction: .73,
-                      padEnds: false,
-                      scrollDirection: Axis.vertical),
+                  modifier: const Modifier(viewportFraction: .73, padEnds: false, scrollDirection: Axis.vertical),
                   transform: StackTransform(),
                   itemBuilder: pageViewItem,
                 ),
@@ -118,8 +146,7 @@ class MyHomePage extends StatelessWidget {
               SizedBox(
                 height: 300,
                 child: PageViewJ(
-                  modifier: const Modifier(
-                      scrollDirection: Axis.horizontal, clipBehavior: Clip.none),
+                  modifier: const Modifier(scrollDirection: Axis.vertical, clipBehavior: Clip.none),
                   transform: FlipTransform(),
                   itemBuilder: pageViewItem,
                 ),

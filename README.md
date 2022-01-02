@@ -1,10 +1,10 @@
-# [![publish](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml/badge.svg)](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml)  [![](https://img.shields.io/badge/pageviewj-0.0.1-blue)](https://pub.dev/packages/pageviewj)
+# [![publish](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml/badge.svg)](https://github.com/ZuYun/pageviewj/actions/workflows/publish.yml)  [![](https://img.shields.io/badge/pageviewj-0.0.3-blue)](https://pub.dev/packages/pageviewj)
 
 - pub
 
   ```
   dependencies:
-    pageviewj: ^0.0.1
+    pageviewj: ^0.0.3
   ```
 
   
@@ -85,6 +85,17 @@ PageViewJ(
 )
 ```
 
+### ShuttersFlipTransform
+
+![flipover](https://raw.githubusercontent.com/ZuYun/pageviewj/main/preview/ShuttersFlipTransform.gif)
+
+```dart
+PageViewJ(
+   transform: ShuttersFlipTransform(),
+   itemBuilder: pageViewItem,
+)
+```
+
 
 ### CubeTransform
 
@@ -93,6 +104,17 @@ PageViewJ(
 ```dart
 PageViewJ(
    transform: CubeTransform(),
+   itemBuilder: pageViewItem,
+)
+```
+
+### ShuttersCubeTransform
+
+![flipover](https://raw.githubusercontent.com/ZuYun/pageviewj/main/preview/ShuttersCubeTransform.gif)
+
+```dart
+PageViewJ(
+   transform: ShuttersCubeTransform(),
    itemBuilder: pageViewItem,
 )
 ```
