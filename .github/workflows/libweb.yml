@@ -1,0 +1,37 @@
+# 为library编译flutter web 同时发布为github page 网页源码分支为gh-page，通过 user.github.io/repo/可以访问
+name: lib web
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+      - name: build flutter web
+        run: |
+          cd example
+          flutter pub get
+          flutter build web --release --base-href /${{github.event.repository.name}}/
+      - name: deploy github page
+        run: |
+          cd example/build/web
+          git init
+          # type configurations: your user.email and user.name followed lines 
+          # git config --global user.email your_email 
+          # git config --global user.name your_name 
+          git config --global user.email jonas.jzy@gmail.com
+          git config --global user.name ZuYun
+          git status
+          git remote add origin https://${{secrets.dev_secret}}@github.com/${{github.repository}}.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
