@@ -1,6 +1,6 @@
 # 编译apk 同时发布到release页面
 
-name: flutter build
+name: flib build
 
 # Controls when the workflow will run
 on:
@@ -19,7 +19,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-      # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed as part of the job
     # 这个任务的步骤
     steps:
       # 拉取项目代码
@@ -40,13 +40,11 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       # 建立  环境
       - name: 🐧  Flutter action
-      - uses: subosito/flutter-action@v2.3.0
+        uses: subosito/flutter-action@v2.3.0
         with:
           flutter-version: '2.x'
           channel: 'stable'
       - run: flutter --version
-
-      # 下载项目依赖
       - name:  🍏 build apk
         run: |
           cd example
