@@ -19,8 +19,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-     # 这个任务的步骤
+      # Steps represent a sequence of tasks that will be executed as part of the job
+    # 这个任务的步骤
     steps:
       # 拉取项目代码
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -31,7 +31,7 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       # 建立 java 环境
-      - name: Setup Java JDK
+      - name: 🎉 Setup Java JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
@@ -39,10 +39,13 @@ jobs:
       - run: echo "🖥️ The java setup succeed."
       - run: echo "🍏 This job's status is ${{ job.status }}."
       # 建立  环境
-      - name:  action
-        uses: subosito/-action@v1.5.3
+      - name: 🐧  Flutter action
+      - uses: subosito/flutter-action@v2.3.0
         with:
-          -version: "2.0.5"
+          flutter-version: '2.x'
+          channel: 'stable'
+      - run: flutter --version
+
       # 下载项目依赖
       - name:  🍏 build apk
         run: |
